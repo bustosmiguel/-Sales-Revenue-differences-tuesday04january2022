@@ -1,0 +1,67 @@
+---
+title: "Sales and Revenue of ExxonMovil"
+author: "Miguel Angel Bustos"
+date: "04-01-2022"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+**Sales and Revenue Differences**
+
+What´s the difference between Sales and Revenue? ExxonMovil, it´s an american multinational oil and gas corporation, headquartered in Irving, Texas. And this is the "ExxonMovil Condensed Consolidated Statement of Income" in 2019:
+
+ \fbox{CCSOI = Condensed Consolidated Statement of Income}
+
+ \fbox{Sales = Money paid by customers}
+
+ \fbox{Revenue = (i) Sales, (ii) Income form equity affiliates and (iii) other incomes}
+
+
+
+```{r, include=F}
+
+library(ggplot2)
+library(tidyverse)
+
+```
+
+1.- This is the ExxonMovil Condensed Consolidated Statement of Income data frame:
+
+```{r}
+
+CCSOI <- data.frame(Revenues_and_other_Income = c("Sales and operating revenue",
+                                                  "Income form Equity Affiliaties",
+                                                  "Other Income"),
+                    Thirteenth_June_2019 = c(67491, 1359, 241),
+                    Thirteenth_June_2018 = c(71456, 1729, 316))
+
+```
+
+
+
+2.- Set up this code to construct a geom bar:
+
+
+```{r}
+
+r <- ggplot(data = CCSOI, aes(x = "", y = Thirteenth_June_2019, fill = Revenues_and_other_Income))
+r+ geom_bar(stat = "identity") +
+  ylab("2019 incomes")+
+  xlab("Revenue") +
+  ggtitle("Revenue composition", subtitle = "The revenue concept") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  scale_color_discrete(name = "Revenue of ExxonMovil")
+  
+
+
+```
+
+3.- Conclusion: 
+
+The Revenue is majority sales as this geom bar shows, but it´s important to consider "The incomes from equities" and "Other incomes".
+
+[SOURCE: [ExxonMovil Condensed Consolidated Statement of Income]](https://www.investopedia.com/ask/answers/122214/what-difference-between-revenue-and-sales.asp)
+
+
+
